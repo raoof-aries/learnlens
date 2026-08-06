@@ -14,11 +14,7 @@
 
 /* Ambient Radial Background Glow Spheres */
 .register-ambient-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(140px);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .glow-top-left {
@@ -100,20 +96,20 @@
 
 .register-main-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 3.8vw, 3.5rem);
+  font-size: clamp(2rem, 3.2vw, 3rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.015em;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .register-summary-text {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.15vw, 1.12rem);
+  font-size: clamp(0.85rem, 0.98vw, 0.95rem);
   color: #a4abbd;
   line-height: 1.65;
-  max-width: 480px;
+  max-width: 440px;
 }
 
 /* Glassmorphic Panel Elevation */

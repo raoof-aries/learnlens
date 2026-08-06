@@ -153,7 +153,7 @@
 
 .hero-brand-name {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  font-size: clamp(2rem, 5vw, 4.6rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 0.98;
@@ -162,17 +162,17 @@
 }
 
 .title-gold-glow {
-  background: linear-gradient(120deg, #38bdf8 0%, #0ea5e9 50%, #0284c7 100%);
+  background: linear-gradient(120deg, #00f0ff 0%, #0088ff 55%, #0055ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 2px 10px rgba(56, 189, 248, 0.3));
+  filter: none;
 }
 
 /* Subtitle Guarantee */
 .hero-title-sub {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 2.9vw, 2.8rem);
+  font-size: clamp(1.25rem, 2.4vw, 2.35rem);
   color: #ffffff;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -181,24 +181,24 @@
 }
 
 .hero-summary-text {
-  font-size: clamp(0.98rem, 1.25vw, 1.2rem);
+  font-size: clamp(0.84rem, 1.05vw, 1.02rem);
   color: var(--text-secondary);
   line-height: 1.65;
-  max-width: 700px;
-  margin-bottom: 1.75rem;
+  max-width: 650px;
+  margin-bottom: 1.5rem;
 }
 
 .hero-action-row {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
 .hero-btn-sub,
 .hero-btn-main {
-  padding: 0.98rem 1.75rem;
-  font-size: 1rem;
+  padding: 0.68rem 1.35rem;
+  font-size: 0.85rem;
 }
 
 .play-icon-shape {
@@ -232,7 +232,7 @@
 
 .prize-eyebrow-tag {
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   color: var(--gold-light);
@@ -241,11 +241,11 @@
 
 .prize-amount-num {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 3.8vw, 3.6rem);
+  font-size: clamp(2.1rem, 3.2vw, 3rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.02em;
-  filter: drop-shadow(0 2px 8px rgba(56, 189, 248, 0.25));
+  filter: none;
   transition: transform 0.25s ease;
 }
 
