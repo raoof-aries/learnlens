@@ -1,0 +1,259 @@
+.prize-section-2col {
+  position: relative;
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Seamless Soft Top Gradient Blend */
+.prize-section-2col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(180deg, #0a0d18 0%, rgba(10, 13, 24, 0.5) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Seamless Soft Bottom Gradient Blend */
+.prize-section-2col::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(0deg, #0a0d18 0%, rgba(10, 13, 24, 0.5) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.prize-glow-bg {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(14, 165, 233, 0.02) 60%, transparent 100%);
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.prize-container-2col {
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left Column: Grand Prize Showcase */
+.prize-col-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.prize-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.prize-hero-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--gold-primary, #38bdf8);
+  margin-bottom: 0.4rem;
+}
+
+.prize-hero-amount {
+  font-family: var(--font-heading);
+  font-size: clamp(3.4rem, 5.8vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.prize-hero-sub {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+  line-height: 1.55;
+  max-width: 440px;
+  margin-bottom: 2rem;
+}
+
+.prize-cta-row {
+  display: flex;
+}
+
+/* Right Column: Recognition Highlights */
+.prize-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  position: relative;
+}
+
+.prize-feature-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.feature-icon-box {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: 14px;
+  background: rgba(18, 24, 40, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.prize-feature-block:hover .feature-icon-box {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.feature-icon {
+  color: var(--gold-primary, #38bdf8);
+}
+
+.feature-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.feature-item-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main, #ffffff);
+  line-height: 1.35;
+}
+
+.feature-item-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+  line-height: 1.6;
+}
+
+.right-items-divider {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.35), rgba(56, 189, 248, 0.08));
+  display: flex;
+  align-items: center;
+}
+
+.divider-glow-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8, 0 0 4px #38bdf8;
+}
+
+/* Responsive Queries */
+@media (max-width: 960px) {
+  .prize-container-2col {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .prize-col-left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .prize-hero-content {
+    align-items: center;
+  }
+
+  .prize-hero-sub {
+    max-width: 500px;
+  }
+
+  .prize-col-right {
+    align-items: center;
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .prize-feature-block {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.1rem;
+  }
+
+  .feature-text-block {
+    align-items: center;
+    text-align: center;
+  }
+
+  .right-items-divider {
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), transparent);
+    justify-content: center;
+  }
+
+  .divider-glow-dot {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 576px) {
+  .prize-section-2col {
+    padding: 4rem 1.25rem;
+  }
+
+  .prize-feature-block {
+    gap: 1rem;
+  }
+
+  .feature-item-title {
+    font-size: 1.15rem;
+  }
+
+  .feature-item-desc {
+    font-size: 0.9rem;
+  }
+}
+

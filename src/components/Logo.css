@@ -1,0 +1,43 @@
+.brand-logo-container {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  box-shadow: none;
+}
+
+.brand-logo-container:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.brand-logo-svg {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Size Variants */
+.brand-logo-small .brand-logo-svg {
+  height: 30px;
+}
+
+.brand-logo-large .brand-logo-svg {
+  height: 48px;
+}
+
+@media (max-width: 640px) {
+  .brand-logo-svg {
+    height: 32px;
+  }
+}
+
