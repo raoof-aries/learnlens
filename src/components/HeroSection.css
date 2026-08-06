@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 4.2rem; /* navbar offset */
+  padding-top: 5.5rem; /* navbar offset */
   overflow: hidden;
   background-size: cover;
   background-position: center right;
@@ -104,7 +104,7 @@
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.15em;
-  color: var(--gold-light);
+  color: #ffffff;
   text-transform: uppercase;
   white-space: nowrap;
 }
