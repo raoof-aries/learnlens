@@ -33,22 +33,36 @@ export const CountdownTimer = () => {
   return (
     <div className="countdown-text-only">
       <div className="text-timer-item">
-        <span className="timer-num">{formatNumber(timeLeft.days)}</span>
+        <div className="timer-num-box">
+          <span className="timer-num">{formatNumber(timeLeft.days)}</span>
+        </div>
         <span className="timer-unit-lbl">DAYS</span>
       </div>
+
       <span className="timer-colon">:</span>
+
       <div className="text-timer-item">
-        <span className="timer-num">{formatNumber(timeLeft.hours)}</span>
+        <div className="timer-num-box">
+          <span className="timer-num">{formatNumber(timeLeft.hours)}</span>
+        </div>
         <span className="timer-unit-lbl">HOURS</span>
       </div>
+
       <span className="timer-colon">:</span>
+
       <div className="text-timer-item">
-        <span className="timer-num">{formatNumber(timeLeft.minutes)}</span>
+        <div className="timer-num-box">
+          <span className="timer-num">{formatNumber(timeLeft.minutes)}</span>
+        </div>
         <span className="timer-unit-lbl">MINUTES</span>
       </div>
+
       <span className="timer-colon">:</span>
+
       <div className="text-timer-item">
-        <span className="timer-num">{formatNumber(timeLeft.seconds)}</span>
+        <div className="timer-num-box">
+          <span className="timer-num">{formatNumber(timeLeft.seconds)}</span>
+        </div>
         <span className="timer-unit-lbl">SECONDS</span>
       </div>
     </div>
@@ -56,3 +70,4 @@ export const CountdownTimer = () => {
 };
 
 export default CountdownTimer;
+
