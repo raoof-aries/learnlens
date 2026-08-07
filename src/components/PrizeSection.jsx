@@ -7,36 +7,31 @@ export const PrizeSection = () => {
   return (
     <section 
       id="prizes" 
-      className="prize-section-2col"
+      className="prize-section-stacked"
       style={{ backgroundImage: `url("${bg2Image}")` }}
     >
-      {/* Background Ambient Glow */}
-      <div className="prize-glow-bg"></div>
-
-      <div className="prize-container-2col">
-        {/* Left Column: Grand Prize Showcase */}
-        <div className="prize-col-left">
-          <div className="prize-hero-content">
-            <span className="prize-hero-label">GRAND PRIZE POOL</span>
-            <h2 className="prize-hero-amount title-gold-glow">₹1,00,000</h2>
-            <p className="prize-hero-sub">
-              Total cash prize pool for winning schools and student creators nationwide.
-            </p>
-            <div className="prize-cta-row">
-              <a href="#register" className="btn-gold">
-                <span>Register Your School</span>
-                <ArrowRight size={17} />
-              </a>
-            </div>
+      <div className="prize-container-stacked">
+        {/* Top Centered Row: Grand Prize Showcase */}
+        <div className="prize-top-showcase">
+          <span className="prize-hero-label">GRAND PRIZE POOL</span>
+          <h2 className="prize-hero-amount">₹1,00,000</h2>
+          <p className="prize-hero-sub">
+            Total cash prize pool for winning schools and student creators nationwide.
+          </p>
+          <div className="prize-cta-row">
+            <a href="#register" className="btn-gold prize-btn-main">
+              <span>Register Your School</span>
+              <ArrowRight size={17} />
+            </a>
           </div>
         </div>
 
-        {/* Right Column: Recognition Highlights */}
-        <div className="prize-col-right">
-          {/* Benefit 1 */}
-          <div className="prize-feature-block">
+        {/* Bottom Row: 2 Benefit Cards Side-by-Side */}
+        <div className="prize-bottom-cards-grid">
+          {/* Benefit Card 1 */}
+          <div className="prize-benefit-card">
             <div className="feature-icon-box">
-              <Award size={28} className="feature-icon" />
+              <Award size={26} className="feature-icon" />
             </div>
             <div className="feature-text-block">
               <h3 className="feature-item-title">Certificate of Participation for Every School</h3>
@@ -46,15 +41,10 @@ export const PrizeSection = () => {
             </div>
           </div>
 
-          {/* Divider Line */}
-          <div className="right-items-divider">
-            <span className="divider-glow-dot"></span>
-          </div>
-
-          {/* Benefit 2 */}
-          <div className="prize-feature-block">
+          {/* Benefit Card 2 */}
+          <div className="prize-benefit-card">
             <div className="feature-icon-box">
-              <Video size={28} className="feature-icon" />
+              <Video size={26} className="feature-icon" />
             </div>
             <div className="feature-text-block">
               <h3 className="feature-item-title">Winning Videos Featured in LearnLens Showcase</h3>
@@ -70,4 +60,6 @@ export const PrizeSection = () => {
 };
 
 export default PrizeSection;
+
+
 
