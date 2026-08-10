@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { 
   Building2, 
   MapPin, 
@@ -36,6 +37,19 @@ export const RegisterSection = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [registrationRef, setRegistrationRef] = useState('');
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const recaptchaRef = useRef(null);
+
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+    if (errors.captcha) {
+      setErrors(prev => ({ ...prev, captcha: null }));
+    }
+  };
+
+  const handleCaptchaExpired = () => {
+    setCaptchaToken(null);
+  };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -66,10 +80,14 @@ export const RegisterSection = () => {
     if (!formData.cityState.trim()) newErrors.cityState = 'City & State is required';
     if (!formData.schoolEmail.trim()) {
       newErrors.schoolEmail = 'Official email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.schoolEmail)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.schoolEmail)) {
       newErrors.schoolEmail = 'Enter a valid email address';
     }
-    if (!formData.schoolPhone.trim()) newErrors.schoolPhone = 'Contact number is required';
+    if (!formData.schoolPhone.trim()) {
+      newErrors.schoolPhone = 'Contact number is required';
+    } else if (formData.schoolPhone.trim().replace(/\D/g, '').length < 7) {
+      newErrors.schoolPhone = 'Enter a valid contact number (at least 7 digits)';
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -79,10 +97,14 @@ export const RegisterSection = () => {
     if (!formData.coordinatorName.trim()) newErrors.coordinatorName = 'Coordinator name is required';
     if (!formData.coordinatorEmail.trim()) {
       newErrors.coordinatorEmail = 'Coordinator email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.coordinatorEmail)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.coordinatorEmail)) {
       newErrors.coordinatorEmail = 'Enter a valid email address';
     }
-    if (!formData.coordinatorPhone.trim()) newErrors.coordinatorPhone = 'WhatsApp / Mobile number is required';
+    if (!formData.coordinatorPhone.trim()) {
+      newErrors.coordinatorPhone = 'WhatsApp / Mobile number is required';
+    } else if (formData.coordinatorPhone.trim().replace(/\D/g, '').length < 7) {
+      newErrors.coordinatorPhone = 'Enter a valid mobile number (at least 7 digits)';
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -91,6 +113,9 @@ export const RegisterSection = () => {
     const newErrors = {};
     if (!formData.isAuthorized) {
       newErrors.isAuthorized = 'You must declare authorized representation';
+    }
+    if (!captchaToken) {
+      newErrors.captcha = 'Please complete the reCAPTCHA verification';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -131,6 +156,10 @@ export const RegisterSection = () => {
       submissionCount: '1 Video',
       isAuthorized: false
     });
+    setCaptchaToken(null);
+    if (recaptchaRef.current) {
+      recaptchaRef.current.reset();
+    }
     setErrors({});
     setStep(1);
     setIsSubmitted(false);
@@ -441,6 +470,20 @@ export const RegisterSection = () => {
                         </span>
                       </label>
                       {errors.isAuthorized && <span className="error-text block-error">{errors.isAuthorized}</span>}
+                    </div>
+
+                    <div className="recaptcha-container">
+                      <label className="recaptcha-label">Security Verification *</label>
+                      <div className="recaptcha-wrapper">
+                        <ReCAPTCHA
+                          ref={recaptchaRef}
+                          sitekey="6LeChP0mAAAAAINyJjJ-oRRsOzsNKgVizZyCtv8z"
+                          onChange={handleCaptchaChange}
+                          onExpired={handleCaptchaExpired}
+                          theme="dark"
+                        />
+                      </div>
+                      {errors.captcha && <span className="error-text block-error">{errors.captcha}</span>}
                     </div>
 
                     <div className="form-actions space-between">

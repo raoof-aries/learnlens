@@ -428,6 +428,14 @@
   }
 
   .highlight-compact-card {
-    padding: 1rem 0.85rem;
+    padding: 1.1rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .h-compact-text {
+    align-items: center;
+    text-align: center;
   }
 }

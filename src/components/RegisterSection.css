@@ -54,6 +54,15 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+  .register-left-header {
+    align-items: center;
+    text-align: center;
+  }
+
+  .register-summary-text {
+    max-width: 100%;
+  }
 }
 
 /* LEFT COLUMN: TITLE & DESCRIPTION */
@@ -474,8 +483,14 @@
 @media (max-width: 580px) {
   .guidelines-download-card {
     flex-direction: column;
-    align-items: stretch;
-    text-align: left;
+    align-items: center;
+    text-align: center;
+  }
+
+  .guidelines-card-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .btn-download-guidelines {
@@ -515,6 +530,30 @@
 
 .checkbox-text strong {
   color: #ffffff;
+}
+
+/* RECAPTCHA STYLING */
+.recaptcha-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.recaptcha-label {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.01em;
+}
+
+.recaptcha-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding: 0.2rem 0;
 }
 
 /* FORM ACTIONS & BUTTONS */

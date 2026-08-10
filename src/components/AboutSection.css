@@ -260,5 +260,18 @@
   .pillar-card {
     padding: 1.6rem 1.4rem;
     min-height: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .pillar-card-header {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-card-body {
+    align-items: center;
+    text-align: center;
   }
 }
