@@ -13,9 +13,12 @@ import {
   Check, 
   RefreshCw,
   Download,
-  FileText
+  FileText,
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import guidelinesPdf from '../assets/Guidelines.pdf';
+import getDynamicBasename from '../utils/basename';
 import './RegisterSection.css';
 
 export const RegisterSection = () => {
@@ -36,6 +39,9 @@ export const RegisterSection = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [serverSuccessMsg, setServerSuccessMsg] = useState('');
   const [registrationRef, setRegistrationRef] = useState('');
   const [captchaToken, setCaptchaToken] = useState(null);
   const recaptchaRef = useRef(null);
@@ -133,12 +139,74 @@ export const RegisterSection = () => {
     if (step > 1) setStep(step - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateStep3()) {
-      const refCode = `REG-2026-IND-${Math.floor(100000 + Math.random() * 900000)}`;
-      setRegistrationRef(refCode);
-      setIsSubmitted(true);
+    if (!validateStep3()) return;
+
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const base = getDynamicBasename();
+      const endpoint = base.endsWith('/') 
+        ? `${base}learnlens-reg-action.php` 
+        : `${base}/learnlens-reg-action.php`;
+
+      const postData = new FormData();
+      postData.append('schoolName', formData.schoolName);
+      postData.append('school_name', formData.schoolName);
+      postData.append('board', formData.board);
+      postData.append('cityState', formData.cityState);
+      postData.append('city_state', formData.cityState);
+      postData.append('schoolEmail', formData.schoolEmail);
+      postData.append('school_email', formData.schoolEmail);
+      postData.append('email', formData.schoolEmail);
+      postData.append('schoolPhone', formData.schoolPhone);
+      postData.append('school_phone', formData.schoolPhone);
+      postData.append('coordinatorName', formData.coordinatorName);
+      postData.append('coordinator_name', formData.coordinatorName);
+      postData.append('designation', formData.designation);
+      postData.append('coordinatorEmail', formData.coordinatorEmail);
+      postData.append('coordinator_email', formData.coordinatorEmail);
+      postData.append('coordinatorPhone', formData.coordinatorPhone);
+      postData.append('coordinator_phone', formData.coordinatorPhone);
+      postData.append('submissionCount', formData.submissionCount);
+      postData.append('submission_count', formData.submissionCount);
+      if (captchaToken) {
+        postData.append('g-recaptcha-response', captchaToken);
+        postData.append('recaptchaToken', captchaToken);
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: postData,
+      });
+
+      const responseText = await response.text();
+      let resData;
+      try {
+        resData = JSON.parse(responseText);
+      } catch (parseErr) {
+        console.error('Invalid JSON response from server:', responseText);
+        throw new Error('Server returned an unexpected format.');
+      }
+
+      if (resData.status == '1' || resData.status === 1) {
+        const refCode = resData.refCode || resData.registrationRef || `REG-2026-IND-${Math.floor(100000 + Math.random() * 900000)}`;
+        setRegistrationRef(refCode);
+        setServerSuccessMsg(resData.message || 'Registration submitted successfully');
+        setIsSubmitted(true);
+      } else {
+        const errorMsg = resData.message || 'Mail sending failed. Please enter correct Email ID';
+        setSubmitError(errorMsg);
+      }
+    } catch (err) {
+      console.error('Registration submit error:', err);
+      setSubmitError(err.message === 'Server returned an unexpected format.'
+        ? 'Server error occurred during processing. Please try again later.'
+        : 'Failed to submit registration. Please check your network connection and try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -161,8 +229,11 @@ export const RegisterSection = () => {
       recaptchaRef.current.reset();
     }
     setErrors({});
+    setSubmitError('');
+    setServerSuccessMsg('');
     setStep(1);
     setIsSubmitted(false);
+    setIsSubmitting(false);
   };
 
   return (
@@ -486,14 +557,30 @@ export const RegisterSection = () => {
                       {errors.captcha && <span className="error-text block-error">{errors.captcha}</span>}
                     </div>
 
+                    {submitError && (
+                      <div className="server-error-banner">
+                        <AlertCircle size={20} className="server-error-icon" />
+                        <span>{submitError}</span>
+                      </div>
+                    )}
+
                     <div className="form-actions space-between">
-                      <button type="button" className="btn-outline-gold" onClick={handleBack}>
+                      <button type="button" className="btn-outline-gold" onClick={handleBack} disabled={isSubmitting}>
                         <ArrowLeft size={17} />
                         <span>Back</span>
                       </button>
-                      <button type="submit" className="btn-gold">
-                        <span>Submit Registration</span>
-                        <CheckCircle2 size={18} />
+                      <button type="submit" className="btn-gold" disabled={isSubmitting}>
+                        {isSubmitting ? (
+                          <>
+                            <span>Submitting...</span>
+                            <Loader2 size={18} className="btn-spinner" />
+                          </>
+                        ) : (
+                          <>
+                            <span>Submit Registration</span>
+                            <CheckCircle2 size={18} />
+                          </>
+                        )}
                       </button>
                     </div>
                   </form>
@@ -507,6 +594,12 @@ export const RegisterSection = () => {
                 </div>
 
                 <h3 className="success-title">School Registration Completed!</h3>
+                {serverSuccessMsg && (
+                  <div className="server-success-pill">
+                    <CheckCircle2 size={16} />
+                    <span>{serverSuccessMsg}</span>
+                  </div>
+                )}
                 <p className="success-subtitle">
                   Congratulations! <strong>{formData.schoolName}</strong> has been officially enrolled in the National Competition 2026.
                 </p>
