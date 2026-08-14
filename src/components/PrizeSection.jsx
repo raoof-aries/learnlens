@@ -14,7 +14,7 @@ export const PrizeSection = () => {
         {/* Top Centered Row: Grand Prize Showcase */}
         <div className="prize-top-showcase">
           <span className="prize-hero-label">GRAND PRIZE POOL</span>
-          <h2 className="prize-hero-amount">₹1,00,000</h2>
+          <h2 className="prize-hero-amount">₹ 1,00,000</h2>
           <p className="prize-hero-sub">
             Total cash prize pool for winning schools and student creators nationwide.
           </p>

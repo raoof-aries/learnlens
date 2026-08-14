@@ -4,6 +4,8 @@ import CountdownTimer from './CountdownTimer';
 import bgImage from '../assets/BG.png';
 import aiiLogo from '../assets/AII.png';
 import aimriLogo from '../assets/AIMRI.png';
+import ivarsityLogo from '../assets/iVarsity.png';
+import effismLogo from '../assets/Effism.png';
 import guidelinesPdf from '../assets/Guidelines.pdf';
 import './HeroSection.css';
 
@@ -17,13 +19,17 @@ export const HeroSection = () => {
       <div className="hero-viewport-container">
         {/* Main Content Area: Centered Layout */}
         <div className="hero-center-content-area">
-          {/* Powered By Pill */}
-          <div className="hero-badge-pill hero-powered-pill">
-            <span className="badge-glow-dot"></span>
-            <span className="badge-text powered-label">POWERED BY</span>
-            <div className="powered-logos-group">
-              <img src={aiiLogo} alt="AII Logo" className="powered-logo-img logo-aii" />
-              <img src={aimriLogo} alt="AIMRI Logo" className="powered-logo-img logo-aimri" />
+          {/* Powered By Section above Title - Direct Large Logos */}
+          <div className="hero-powered-direct">
+            <span className="powered-direct-label">POWERED BY</span>
+            <div className="powered-logos-row">
+              <img src={aiiLogo} alt="Aries Industrial Institute" className="powered-logo-large logo-aii-lg" />
+              <span className="powered-logos-sep"></span>
+              <img src={aimriLogo} alt="AIMRI" className="powered-logo-large logo-aimri-lg" />
+              <span className="powered-logos-sep"></span>
+              <img src={ivarsityLogo} alt="iVarsity" className="powered-logo-large logo-ivarsity-lg" />
+              <span className="powered-logos-sep"></span>
+              <img src={effismLogo} alt="Effism" className="powered-logo-large logo-effism-lg" />
             </div>
           </div>
 
@@ -66,7 +72,7 @@ export const HeroSection = () => {
               <Trophy size={16} className="prize-trophy-icon" />
               <span className="clean-eyebrow">GRAND PRIZE POOL</span>
             </div>
-            <span className="clean-prize-amount">₹1,00,000</span>
+            <span className="clean-prize-amount">₹ 1,00,000</span>
           </div>
 
           {/* Right: Registration Countdown */}

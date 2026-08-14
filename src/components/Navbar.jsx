@@ -122,7 +122,7 @@ export const Navbar = () => {
             <div className="mobile-drawer-footer">
               <div className="prize-badge-mini">
                 <Trophy size={16} className="prize-icon" />
-                <span>₹1,00,000 Grand Prize Pool</span>
+                <span>₹ 1,00,000 Grand Prize Pool</span>
               </div>
               <div className="mobile-drawer-actions">
                 <a
