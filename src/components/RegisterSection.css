@@ -756,5 +756,53 @@
   }
 }
 
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed !important;
+}
 
+/* FEE HIGHLIGHT & RUPEE ICON */
+.register-fee-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 700;
+  color: var(--gold-light, #ffd54f);
+  background: rgba(245, 180, 24, 0.12);
+  padding: 0.1rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 180, 24, 0.25);
+}
 
+.inline-rupee-icon {
+  display: inline-block;
+  vertical-align: -2px;
+}
+
+.btn-rupee-icon {
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 1px;
+}
+
+.btn-pay-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.text-gold-highlight {
+  color: var(--gold-light, #ffd54f) !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: #93c5fd !important;
+}

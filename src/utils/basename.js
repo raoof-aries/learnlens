@@ -1,22 +1,41 @@
 /**
- * Computes the dynamic base path for the application at runtime.
- * Works seamlessly whether the app is hosted at root ('/') or inside any Apache subfolder ('/my-folder/').
- *
- * @returns {string} The dynamic base path (e.g., '/' or '/subfolder')
+ * Dynamic Basename Utility for Apache Deployment
+ * 
+ * Dynamically resolves the base URL/path regardless of whether the app is 
+ * deployed at the server root ('/') or inside any subdirectory (e.g., '/subfolder/').
  */
-export const getDynamicBasename = () => {
-  // Get window location pathname
+
+/**
+ * Returns the current dynamic base path derived from window.location.pathname.
+ * @returns {string} E.g. '/' or '/subfolder/'
+ */
+export const getBasename = () => {
+  if (typeof window === 'undefined') return '/';
+  
   const pathname = window.location.pathname;
-
-  // Strip trailing file name if present (e.g., /index.html)
-  let base = pathname.replace(/\/[^/]*\.[^/]*$/, '');
-
-  // Strip trailing slash if not root '/'
-  if (base.length > 1 && base.endsWith('/')) {
-    base = base.slice(0, -1);
+  
+  // If path ends with a file (e.g. /index.html or /page.php), strip the filename
+  if (/\.[a-zA-Z0-9]+$/.test(pathname)) {
+    return pathname.substring(0, pathname.lastIndexOf('/') + 1) || '/';
   }
-
-  return base || '/';
+  
+  // Ensure trailing slash
+  return pathname.endsWith('/') ? pathname : `${pathname}/`;
 };
 
-export default getDynamicBasename;
+/**
+ * Constructs a fully dynamic asset path relative to the current deployment root.
+ * @param {string} path - Relative asset path (e.g., 'logo.svg' or '/logo.svg')
+ * @returns {string} Fully prefixed path
+ */
+export const getDynamicAssetUrl = (path) => {
+  const base = getBasename();
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${base}${cleanPath}`;
+};
+
+export const getDynamicBasename = getBasename;
+
+export default getBasename;
+
+
